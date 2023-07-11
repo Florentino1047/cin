@@ -3,7 +3,10 @@ import sys
 
 
 def __home_prefixed(dir_name) -> str:
-    home_d = os.getenv("HOME")
+    if sys.platform == "win32":
+        home_d = os.getenv("USERPROFILE")
+    else:
+        home_d = os.getenv("HOME")
 
     if not home_d:
         # WARNING: it should not happen
